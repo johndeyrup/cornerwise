@@ -76,11 +76,18 @@
 *** Run
 
     - ~eval $(docker-machine env dev)~
+    
+    For Windows: docker-machine env --shell=powershell dev
+    Run the command that says run this command to configure your shell should be something like:
+    docker-machine.exe env --shell=powershell dev | Invoke-Expression
 
       This sets up some environment variables to allow the ~docker~
       command line client to communicate with the ~dev~ machine.
 
-    - ~docker run -it -v $PWD/server:/app -v $PWD/client:/client -v $PWD/data:/data APP_PORT=3000 APP_NAME=cornerwise -p "3000:3000" bdsand/cornerwise /bin/bash~
+    - ~docker run -it --rm -v $PWD/server:/app -v $PWD/client:/client -v $PWD/data:/data APP_PORT=3000 APP_NAME=cornerwise -p "3000:3000" bdsand/cornerwise /bin/bash~
+    
+    On Windows:
+    docker run -it -p "3000:3000" bdsand/cornerwise /bin/bash
 
       Creates a new /container/ from the 'bdsand/cornerwise' /image/,
       which it will fetch from Docker Hub if it's not present on the
